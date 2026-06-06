@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Concesionario</title>
+</head>
+
+<body>
+
+    <header class="mainHeader">
+        <h1 class="headerTitle">Concesionario [PONGAN EL NOMBRE QUE QUIERAN, CHICOS (O BORREN ESTO)]</h1>
+        <nav class="mainNav">
+            <button class="navBtn active" id="btnVehiculos" onclick="showSection('vehiculos')">Vehículos</button>
+            <button class="navBtn" id="btnClientes" onclick="showSection('clientes')">Clientes</button>
+            <button class="navBtn" id="btnReservas" onclick="showSection('reservas')">Reservas</button>
+        </nav>
+    </header>
+
+    <main class="mainContent">
+
+        <!-- SECCIÓN VEEHÍCULOS -->
+        <section class="formSection" id="vehiculos">
+            <div class="sectionLayout">
+
+                <div class="formCard">
+                    <h2 class="cardTitle">Registrar Vehículo</h2>
+                    <div class="formGroup">
+                        <input type="text" id="vehiculoMarca" placeholder="Marca" class="inputField">
+                        <input type="text" id="vehiculoModelo" placeholder="Modelo" class="inputField">
+                        <input type="number" id="vehiculoAno" placeholder="Año" class="inputField">
+                        <input type="number" id="vehiculoPrecio" placeholder="Precio" class="inputField">
+                        <input type="text" id="vehiculoColor" placeholder="Color" class="inputField">
+                        <input type="number" id="vehiculoKilometraje" placeholder="Kilometraje" class="inputField">
+                        <select id="vehiculoEstado" class="inputField">
+                            <option value="">-- Estado --</option>
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Usado">Usado</option>
+                        </select>
+                        <button class="submitBtn" id="btnRegistrarVehiculo">Registrar</button>
+                    </div>
+                    <p class="responseMsg" id="msgVehiculo"></p>
+                </div>
+
+                <div class="tableCard">
+                    <div class="tableHeader">
+                        <h2 class="cardTitle">Vehículos registrados</h2>
+                        <button class="reloadBtn" id="btnCargarVehiculos">↻ Cargar</button>
+                    </div>
+                    <div class="tableWrapper">
+                        <table class="dataTable" id="tablaVehiculos">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Año</th>
+                                    <th>Precio</th>
+                                    <th>Color</th>
+                                    <th>Km</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vehiculosBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!--SECCIÓN CLIENTES-->
+        <section class="formSection hidden" id="clientes">
+            <div class="sectionLayout">
+
+                <div class="formCard">
+                    <h2 class="cardTitle">Registrar Cliente</h2>
+                    <div class="formGroup">
+                        <input type="text" id="clienteNombre" placeholder="Nombre completo" class="inputField">
+                        <input type="email" id="clienteEmail" placeholder="Email" class="inputField">
+                        <input type="tel" id="clienteTelefono" placeholder="Teléfono" class="inputField">
+                        <input type="text" id="clienteCiudad" placeholder="Ciudad" class="inputField">
+                        <button class="submitBtn" id="btnRegistrarCliente">Registrar</button>
+                    </div>
+                    <p class="responseMsg" id="msgCliente"></p>
+                </div>
+
+                <div class="tableCard">
+                    <div class="tableHeader">
+                        <h2 class="cardTitle">Clientes registrados</h2>
+                        <button class="reloadBtn" id="btnCargarClientes">↻ Cargar</button>
+                    </div>
+                    <div class="tableWrapper">
+                        <table class="dataTable" id="tablaClientes">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Ciudad</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientesBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN RESERVAS-->
+        <section class="formSection hidden" id="reservas">
+            <div class="sectionLayout">
+
+                <div class="formCard">
+                    <h2 class="cardTitle">Registrar Reserva</h2>
+                    <div class="formGroup">
+                        <input type="date" id="reservaFecha" class="inputField">
+                        <select id="reservaTipo" class="inputField">
+                            <option value="">-- Tipo de transacción --</option>
+                            <option value="Compra">Compra</option>
+                            <option value="Arriendo">Arriendo</option>
+                        </select>
+                        <select id="reservaIdCliente" class="inputField">
+                            <option value="">-- Seleccionar cliente --</option>
+                        </select>
+                        <select id="reservaIdVehiculo" class="inputField">
+                            <option value="">-- Seleccionar vehículo --</option>
+                        </select>
+                        <button class="submitBtn" id="btnRegistrarReserva">Registrar</button>
+                    </div>
+                    <p class="responseMsg" id="msgReserva"></p>
+                </div>
+
+                <div class="tableCard">
+                    <div class="tableHeader">
+                        <h2 class="cardTitle">Reservas registradas</h2>
+                        <button class="reloadBtn" id="btnCargarReservas">↻ Cargar</button>
+                    </div>
+                    <div class="tableWrapper">
+                        <table class="dataTable" id="tablaReservas">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Cliente</th>
+                                    <th>Vehículo</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reservasBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/index.js"></script>
+</body>
+
+</html>

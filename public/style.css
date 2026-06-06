@@ -1,0 +1,465 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* VARIABLES — MODO CLARO */
+:root {
+    --colorPrimary: #ffffff;
+    --colorSecondary: #f0f4ff;
+    --colorAccent: #2563eb;
+    --colorAccentHover: #1d4ed8;
+    --colorAccentSecondary: #FF00FF;
+    --colorAccentSecondaryHover: #cc00cc;
+    --colorText: #0f172a;
+    --colorTextMuted: #64748b;
+    --colorBorder: #bfdbfe;
+    --colorSuccess: #16a34a;
+    --colorError: #dc2626;
+    --colorCardBg: #f8faff;
+    --fontDisplay: 'Syne', sans-serif;
+    --fontBody: 'DM Sans', sans-serif;
+    --radiusCard: 12px;
+    --radiusInput: 8px;
+    --shadowCard: 0 4px 24px rgba(37, 99, 235, 0.10);
+    --transitionBase: all 0.2s ease;
+}
+
+/* VARIABLES — MODO OSCUR */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colorPrimary: #0a0a0f;
+        --colorSecondary: #13101a;
+        --colorAccent: #FF00FF;
+        --colorAccentHover: #cc00cc;
+        --colorAccentSecondary: #3b82f6;
+        --colorAccentSecondaryHover: #2563eb;
+        --colorText: #f1f5f9;
+        --colorTextMuted: #94a3b8;
+        --colorBorder: #2d1f3d;
+        --colorSuccess: #22c55e;
+        --colorError: #ef4444;
+        --colorCardBg: #13101a;
+        --shadowCard: 0 4px 24px rgba(255, 0, 255, 0.12);
+    }
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--colorPrimary);
+    color: var(--colorText);
+    font-family: var(--fontBody);
+    min-height: 100vh;
+}
+
+/* HEADER */
+.mainHeader {
+    background-color: var(--colorSecondary);
+    border-bottom: 1px solid var(--colorBorder);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.headerTitle {
+    font-family: var(--fontDisplay);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--colorAccent);
+    letter-spacing: 0.5px;
+}
+
+/* NAV */
+.mainNav {
+    display: flex;
+    gap: 8px;
+}
+
+.navBtn {
+    background: transparent;
+    color: var(--colorTextMuted);
+    border: 1px solid var(--colorBorder);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-family: var(--fontBody);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transitionBase);
+}
+
+/* Hover nav: acento secundario */
+.navBtn:hover {
+    color: var(--colorAccentSecondary);
+    border-color: var(--colorAccentSecondary);
+}
+
+.navBtn.active {
+    background-color: var(--colorAccent);
+    color: #ffffff;
+    border-color: var(--colorAccent);
+    font-weight: 600;
+}
+
+/* MAIN */
+.mainContent {
+    padding: 32px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* SECTIONS */
+.formSection {
+    display: block;
+}
+
+.formSection.hidden {
+    display: none;
+}
+
+.sectionLayout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+/* FORM CARD */
+.formCard {
+    background-color: var(--colorCardBg);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusCard);
+    padding: 28px;
+    width: 320px;
+    min-width: 320px;
+    box-shadow: var(--shadowCard);
+}
+
+.cardTitle {
+    font-family: var(--fontDisplay);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--colorText);
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.inputField {
+    width: 100%;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: var(--radiusInput);
+    border: 1px solid var(--colorBorder);
+    background-color: var(--colorPrimary);
+    color: var(--colorText);
+    font-family: var(--fontBody);
+    font-size: 14px;
+    transition: var(--transitionBase);
+    outline: none;
+}
+
+.inputField::placeholder {
+    color: var(--colorTextMuted);
+}
+
+/* Hover input: acento secundario sutil */
+.inputField:hover {
+    border-color: var(--colorAccentSecondary);
+}
+
+/* Focus input: acento principal */
+.inputField:focus {
+    border-color: var(--colorAccent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--colorAccent) 20%, transparent);
+}
+
+select.inputField {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+select.inputField option {
+    background-color: var(--colorSecondary);
+    color: var(--colorText);
+}
+
+.submitBtn {
+    width: 100%;
+    height: 44px;
+    background-color: var(--colorAccent);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--radiusInput);
+    font-family: var(--fontBody);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transitionBase);
+    margin-top: 4px;
+}
+
+/* Hover submit: cambia al acento secundario */
+.submitBtn:hover {
+    background-color: var(--colorAccentSecondary);
+    transform: translateY(-1px);
+}
+
+.submitBtn:active {
+    background-color: var(--colorAccentSecondaryHover);
+    transform: translateY(0);
+}
+
+.responseMsg {
+    margin-top: 12px;
+    font-size: 13px;
+    min-height: 20px;
+    font-weight: 500;
+}
+
+.responseMsg.success {
+    color: var(--colorSuccess);
+}
+
+.responseMsg.error {
+    color: var(--colorError);
+}
+
+/* TABLE CARD */
+.tableCard {
+    background-color: var(--colorCardBg);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusCard);
+    padding: 28px;
+    flex: 1;
+    box-shadow: var(--shadowCard);
+    overflow: hidden;
+}
+
+.tableHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.reloadBtn {
+    background: transparent;
+    color: var(--colorAccent);
+    border: 1px solid var(--colorAccent);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: var(--fontBody);
+    cursor: pointer;
+    transition: var(--transitionBase);
+}
+
+/* Hover reload: acento secundario */
+.reloadBtn:hover {
+    background-color: var(--colorAccentSecondary);
+    border-color: var(--colorAccentSecondary);
+    color: #ffffff;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.dataTable th {
+    text-align: left;
+    padding: 10px 14px;
+    color: var(--colorTextMuted);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid var(--colorBorder);
+}
+
+.dataTable td {
+    padding: 12px 14px;
+    border-bottom: 1px solid color-mix(in srgb, var(--colorBorder) 50%, transparent);
+    color: var(--colorText);
+}
+
+/* Hover fila: acento secundario muy sutil */
+.dataTable tbody tr:hover {
+    background-color: color-mix(in srgb, var(--colorAccentSecondary) 6%, transparent);
+}
+
+.dataTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* DELETE BTN */
+.deleteBtn {
+    background: transparent;
+    color: var(--colorError);
+    border: 1px solid var(--colorError);
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: var(--fontBody);
+    cursor: pointer;
+    transition: var(--transitionBase);
+}
+
+.deleteBtn:hover {
+    background-color: var(--colorError);
+    color: white;
+}
+
+/* EMPTY STATE */
+.emptyRow td {
+    text-align: center;
+    color: var(--colorTextMuted);
+    padding: 32px 14px;
+    font-style: italic;
+}
+
+/* RESPONSIVE — TABLET (601px – 900px) */
+@media (max-width: 900px) {
+    .mainHeader {
+        padding: 14px 24px;
+        gap: 12px;
+    }
+
+    .mainContent {
+        padding: 20px 24px;
+    }
+
+    .sectionLayout {
+        flex-direction: column;
+    }
+
+    .formCard {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .tableCard {
+        width: 100%;
+    }
+
+    /* Tabla: scroll horizontal visible */
+    .tableWrapper {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .dataTable {
+        min-width: 520px;
+    }
+}
+
+/* RESPONSIVE — MÓVIL (hasta 600px) */
+@media (max-width: 600px) {
+    .mainHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 16px;
+        gap: 10px;
+    }
+
+    .headerTitle {
+        font-size: 18px;
+    }
+
+    .mainNav {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .navBtn {
+        flex: 1;
+        padding: 8px 6px;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .mainContent {
+        padding: 16px;
+    }
+
+    .sectionLayout {
+        gap: 16px;
+    }
+
+    .formCard {
+        padding: 20px 16px;
+        border-radius: 10px;
+    }
+
+    .cardTitle {
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    .inputField {
+        height: 46px;
+        font-size: 16px; /* evita zoom automático en iOS */
+    }
+
+    .submitBtn {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .tableCard {
+        padding: 16px 14px;
+        border-radius: 10px;
+    }
+
+    .tableHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .reloadBtn {
+        width: 100%;
+        text-align: center;
+        padding: 8px 14px;
+    }
+
+    .dataTable {
+        min-width: 480px;
+        font-size: 12px;
+    }
+
+    .dataTable th {
+        padding: 8px 10px;
+        font-size: 10px;
+    }
+
+    .dataTable td {
+        padding: 10px 10px;
+    }
+
+    .deleteBtn {
+        padding: 5px 10px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+}
