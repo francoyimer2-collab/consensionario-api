@@ -2,11 +2,11 @@ const mysql = require("mysql2/promise");
 require("dotenv").config();
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || process.env.MYSQLHOST, 
-  port: process.env.DB_PORT || process.env.MYSQLPORT || 3306,
-  user: process.env.DB_USER || process.env.MYSQLUSER,
-  password: process.env.DB_PASSWORD || process.env.MYSQLPASSWORD,
-  database: process.env.DB_NAME || process.env.MYSQLDATABASE,
+  host: process.env.MYSQLHOST || process.env.DB_HOST, 
+  port: process.env.MYSQLPORT || process.env.DB_PORT || 3306,
+  user: process.env.MYSQLUSER || process.env.DB_USER,
+  password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD,
+  database: process.env.MYSQLDATABASE || process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -22,7 +22,8 @@ pool
     conn.release();
   })
   .catch((err) => {
-    console.error("❌ Error al conectar con MySQL en el host:", process.env.DB_HOST);
+
+    console.error("❌ Error crítico de conexión. Intentando conectar a:", process.env.MYSQLHOST || process.env.DB_HOST);
     console.error(err);
   });
 
